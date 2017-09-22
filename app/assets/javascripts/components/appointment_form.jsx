@@ -12,7 +12,19 @@ let AppointmentForm = React.createClass({
     this.props.onFormSubmit();
   },
 
+  setAptTime(e) {
+    let name = 'apt_time';
+    let obj = {};
+    if (obj[name] = e.toDate()) {
+      this.props.onUserInput(obj);
+    }
+  },
+
   render() {
+    let inputProps = {
+      name: 'apt_time'
+    };
+
     return (
       <div>
           <h2>Make a new appointment</h2>
@@ -21,9 +33,12 @@ let AppointmentForm = React.createClass({
                    value={this.props.title}
                    onChange={this.handleChange}
             />
-            <input name='apt_time' placeholder='Date and Time'
-                   value={this.props.apt_time}
-                   onChange={this.handleChange}
+
+            <Datetime inputProps={inputProps}
+                      value={this.props.apt_time}
+                      input={false}
+                      open={true}
+                      onChange={this.setAptTime}
             />
             <input type='submit' value='Make Appointment' />
           </form>
